@@ -1,0 +1,37 @@
+{
+  "types": [
+    {
+      "value": "feat",
+      "name": "feat: A new feature"
+    },
+    {
+      "value": "fix",
+      "name": "fix: A bug fix"
+    },
+    {
+      "value": "docs",
+      "name": "docs: Documentation only changes"
+    },
+    {
+      "value": "test",
+      "name": "test: Add or modify tests"
+    },
+    {
+      "value": "refactor",
+      "name": "refactor: Code change without feature/fix"
+    },
+    {
+      "value": "build",
+      "name": "build: Build system or dependencies"
+    },
+    {
+      "value": "ci",
+      "name": "ci: CI/CD configuration"
+    },
+    {
+      "value": "chore",
+      "name": "chore: Miscellaneous changes"
+    }
+  ],
+  "path": "cz-git"
+}

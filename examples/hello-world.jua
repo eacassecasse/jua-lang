@@ -1,0 +1,5 @@
+create function hello(string message)
+	print(message)
+end
+
+hello("Hello World!")
