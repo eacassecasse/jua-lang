@@ -6,7 +6,15 @@ updates:
     schedule:
       interval: weekly
 
+      labels:
+        - "area:tooling"
+        - "type:dependencies"
+
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: weekly
+
+      labels:
+        - "area:security"
+        - "type: dependencies"
