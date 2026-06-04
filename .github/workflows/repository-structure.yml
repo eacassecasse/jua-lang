@@ -1,0 +1,26 @@
+name: Repository Structure Validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  structure:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Repository Structure
+        run: |
+          test -d specs
+          test -d compiler
+          test -d runtime
+          test -d stdlib
+          test -d toolchain
+          test -d tests
+          test -d docs
+          test -d architecture
+          test -d education

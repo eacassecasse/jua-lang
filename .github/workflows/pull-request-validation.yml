@@ -1,0 +1,32 @@
+name: Pull Request Validation
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+jobs:
+  validate-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate PR Description
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.pull_request.body || "";
+
+            const requiredSections = [
+              "## Summary",
+              "## Change Type",
+              "## Testing",
+              "## Checklist"
+            ];
+
+            for (const section of requiredSections) {
+              if (!body.includes(section)) {
+                core.setFailed(`Missing section: ${section}`);
+              }
+            }
