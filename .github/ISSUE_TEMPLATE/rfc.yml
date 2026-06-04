@@ -1,0 +1,42 @@
+name: RFC
+description: Propose an architectural, governance, or ecosystem change.
+title: "[RFC]: "
+labels:
+  - type:rfc
+
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Change
+    validations:
+      required: true
+
+  - type: textarea
+    id: architecture
+    attributes:
+      label: Architectural Impact
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+
+  - type: textarea
+    id: migration
+    attributes:
+      label: Migration Strategy

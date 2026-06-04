@@ -1,0 +1,36 @@
+name: Performance Issue
+description: Report performance regressions or optimization opportunities.
+title: "[PERF]: "
+labels:
+  - type:performance
+
+body:
+  - type: dropdown
+    id: category
+    attributes:
+      label: Performance Category
+      options:
+        - Compile Time
+        - Runtime
+        - Memory Usage
+        - Toolchain
+        - Build Time
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Performance Problem
+    validations:
+      required: true
+
+  - type: textarea
+    id: measurements
+    attributes:
+      label: Measurements and Benchmarks
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction Steps

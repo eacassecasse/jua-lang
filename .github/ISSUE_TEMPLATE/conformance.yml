@@ -1,0 +1,33 @@
+name: Conformance Issue
+description: Report inconsistencies between implementation and specification.
+title: "[CONFORMANCE]: "
+labels:
+  - type:conformance
+
+body:
+  - type: input
+    id: spec
+    attributes:
+      label: Specification Reference
+      description: Link or section from specs/.
+    validations:
+      required: true
+
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Observed Behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior According to Specification
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Example Program

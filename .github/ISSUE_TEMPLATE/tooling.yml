@@ -1,0 +1,38 @@
+name: Toolchain Issue
+description: Report issues related to tooling.
+title: "[TOOLING]: "
+labels:
+  - area:toolchain
+
+body:
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Tool
+      options:
+        - Formatter
+        - Linter
+        - Language Server
+        - Debugger
+        - Package Manager
+        - CLI
+        - Build System
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior

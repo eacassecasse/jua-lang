@@ -1,0 +1,37 @@
+name: Documentation
+description: Report missing, inaccurate, or outdated documentation.
+title: "[DOCS]: "
+labels:
+  - type:documentation
+
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Documentation Location
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: Documentation Issue
+    validations:
+      required: true
+
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Suggested Improvement
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Documentation Category
+      options:
+        - Language Guide
+        - Compiler Guide
+        - Toolchain Guide
+        - Tutorials
+        - API Reference
+        - Education

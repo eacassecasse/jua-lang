@@ -1,0 +1,39 @@
+name: Education
+description: Suggest improvements to educational content and learning resources.
+title: "[EDUCATION]: "
+labels:
+  - area:education
+
+body:
+  - type: dropdown
+    id: category
+    attributes:
+      label: Educational Area
+      options:
+        - Curriculum
+        - Lesson Plans
+        - Exercises
+        - Assessments
+        - Teacher Guides
+        - Classroom Tools
+        - Tutorials
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: Description
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested Improvement
+
+  - type: textarea
+    id: audience
+    attributes:
+      label: Intended Audience
+      description: Students, teachers, self-learners, universities, etc.

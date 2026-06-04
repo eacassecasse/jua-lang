@@ -1,0 +1,71 @@
+name: Bug Report
+description: Report a defect, crash, incorrect behavior, or unexpected result.
+title: "[BUG]: "
+labels:
+  - type:bug
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve Jua.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected Component
+      options:
+        - Lexer
+        - Parser
+        - AST
+        - Semantic Analysis
+        - Type System
+        - Runtime
+        - Standard Library
+        - Toolchain
+        - Documentation
+        - Education
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Briefly describe the issue.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Provide a minimal reproducible example.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Jua Version
+
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      description: OS, architecture, browser, etc.

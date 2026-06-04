@@ -1,0 +1,18 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: Discussions
+    url: https://github.com/eacassecasse/jua-lang/discussions
+    about: Ask questions and discuss ideas with the community.
+
+  - name: Architecture Decision Records
+    url: https://github.com/eacassecasse/jua-lang/tree/main/architecture/adr
+    about: Review accepted architectural decisions.
+
+  - name: Language Specification
+    url: https://github.com/eacassecasse/jua-lang/tree/main/specs
+    about: Review the official language specification before opening a proposal.
+
+  - name: Contributing Guide
+    url: https://github.com/eacassecasse/jua-lang/blob/main/CONTRIBUTING.md
+    about: Read contribution guidelines before submitting issues or pull requests.
