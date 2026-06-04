@@ -14,5 +14,8 @@
   "scripts": {
     "prepare": "husky",
     "commit": "git-cz"
+  },
+  "dependencies": {
+    "madr": "^4.0.0"
   }
 }

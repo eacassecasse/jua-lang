@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      madr:
+        specifier: ^4.0.0
+        version: 4.0.0
     devDependencies:
       '@commitlint/cli':
         specifier: ^21.0.2
@@ -526,6 +530,9 @@ packages:
   longest@2.0.1:
     resolution: {integrity: sha512-Ajzxb8CM6WAnFjgiloPsI3bF+WCxcvhdIG3KNA2KN962+tdBsHcuQ4k4qX/EcS/2CRkcc0iAkR956Nib6aXU/Q==}
     engines: {node: '>=0.10.0'}
+
+  madr@4.0.0:
+    resolution: {integrity: sha512-N4HnSmgW1ouQLlc0XlN8wqrKLzUUPKWIlE1b/sE8fdGdB9dOcb17FZVyEgYgFwD2TWxQBQqem8rWnqooy/rAyw==}
 
   meow@13.2.0:
     resolution: {integrity: sha512-pxQJQzB6djGPXh08dacEloMFopsOqGVRKFPYvPOt9XDZ1HasbgDZA74CJGreSU4G3Ak7EFJGoiH2auq+yXISgA==}
@@ -1272,6 +1279,8 @@ snapshots:
       is-unicode-supported: 0.1.0
 
   longest@2.0.1: {}
+
+  madr@4.0.0: {}
 
   meow@13.2.0: {}
 

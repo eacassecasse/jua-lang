@@ -1,0 +1,126 @@
+[
+  {
+    "name": "priority:critical",
+    "color": "B60205",
+    "description": "Blocks releases, correctness, security, or project stability."
+  },
+  {
+    "name": "priority:high",
+    "color": "D93F0B",
+    "description": "Important work that should be addressed soon."
+  },
+  {
+    "name": "priority:medium",
+    "color": "FBCA04",
+    "description": "Normal priority work."
+  },
+  {
+    "name": "priority:low",
+    "color": "0E8A16",
+    "description": "Nice-to-have improvements and future enhancements."
+  },
+
+  {
+    "name": "type:bug",
+    "color": "D73A4A",
+    "description": "Incorrect behavior or defect."
+  },
+  {
+    "name": "type:feature",
+    "color": "1D76DB",
+    "description": "New functionality or capability."
+  },
+  {
+    "name": "type:documentation",
+    "color": "0075CA",
+    "description": "Documentation updates or additions."
+  },
+  {
+    "name": "type:rfc",
+    "color": "C5DEF5",
+    "description": "Proposal for language or ecosystem evolution."
+  },
+  {
+    "name": "type:specification",
+    "color": "0366D6",
+    "description": "Changes to the language specification."
+  },
+
+  {
+    "name": "area:specification",
+    "color": "0052CC",
+    "description": "Language specification work."
+  },
+  {
+    "name": "area:grammar",
+    "color": "006B75",
+    "description": "Grammar and syntax definitions."
+  },
+  {
+    "name": "area:lexer",
+    "color": "C2E0C6",
+    "description": "Lexer implementation and tokens."
+  },
+  {
+    "name": "area:parser",
+    "color": "BFD4F2",
+    "description": "Parser implementation and recovery."
+  },
+  {
+    "name": "area:semantic",
+    "color": "F9D0C4",
+    "description": "Semantic analysis."
+  },
+  {
+    "name": "area:runtime",
+    "color": "D876E3",
+    "description": "Runtime implementation."
+  },
+  {
+    "name": "area:stdlib",
+    "color": "0E8A16",
+    "description": "Standard library."
+  },
+  {
+    "name": "area:toolchain",
+    "color": "1D76DB",
+    "description": "Toolchain-wide work."
+  },
+  {
+    "name": "area:education",
+    "color": "0E8A16",
+    "description": "Educational materials and curriculum."
+  },
+  {
+    "name": "area:architecture",
+    "color": "5319E7",
+    "description": "Architectural decisions and system structure."
+  },
+
+  {
+    "name": "status:blocked",
+    "color": "B60205",
+    "description": "Cannot proceed due to dependency or decision."
+  },
+  {
+    "name": "status:needs-discussion",
+    "color": "D93F0B",
+    "description": "Requires architectural or design discussion."
+  },
+  {
+    "name": "status:ready",
+    "color": "0E8A16",
+    "description": "Ready to be worked on."
+  },
+
+  {
+    "name": "good-first-issue",
+    "color": "7057FF",
+    "description": "Suitable for first-time contributors."
+  },
+  {
+    "name": "help-wanted",
+    "color": "008672",
+    "description": "Community contributions welcome."
+  }
+]

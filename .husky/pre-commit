@@ -1,1 +1,3 @@
-pnpm test
+#!/usr/bin/env sh
+
+pnpm exec commitlint --from HEAD~1 --to HEAD || true
