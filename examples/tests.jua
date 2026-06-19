@@ -1,0 +1,3 @@
+create name
+create age = 20
+create mutable result = (1 + 25) * 140
