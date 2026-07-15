@@ -1,0 +1,6 @@
+# Parser test.
+
+create left = 10
+create right = 20
+
+create value = left != right

@@ -1,0 +1,3 @@
+# Regression test.
+
+Comparison must bind before equality.

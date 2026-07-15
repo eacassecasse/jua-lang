@@ -1,0 +1,5 @@
+# Parser test.
+
+create value = 5
+
+create value = value < 10

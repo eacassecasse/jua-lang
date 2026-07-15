@@ -4,11 +4,11 @@
   <groupId>tech.servor.app</groupId>
   <artifactId>jua-lang</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>Jua Compiler</name>
+  <name>Jua Language</name>
   <url>https://www.github.com/eacassecasse/jua-lang</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.release>17</maven.compiler.release>
+    <maven.compiler.release>21</maven.compiler.release>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -21,7 +21,7 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  <dependencies> 
+  <dependencies>
     <dependency>
       <groupId>com.github.vbmacher</groupId>
       <artifactId>java-cup</artifactId>
@@ -33,9 +33,21 @@
       <version>11b-20160615-3</version>
     </dependency>
     <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>6.0.3</version>
+	<scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+	    <groupId>org.assertj</groupId>
+	    <artifactId>assertj-core</artifactId>
+	    <version>3.26.0</version>
+	    <scope>test</scope>
     </dependency>
     <!-- Optionally: parameterized tests support -->
     <dependency>
@@ -45,7 +57,46 @@
     </dependency>
   </dependencies>
   <build>
-    <sourceDirectory>compiler</sourceDirectory>
+	  <sourceDirectory>compiler</sourceDirectory>
+	  <plugins>
+		  <plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-surefire-plugin</artifactId>
+			  <version>3.5.3</version>
+		  </plugin>
+		  <!--<plugin>
+			  <groupId>org.jacoco</groupId>
+			  <artifactId>jacoco-maven-plugin</artifactId>
+			  <version>0.8.13</version>
+
+			  <executions>
+				  <execution>
+					  <goals>
+						  <goal>prepare-agent</goal>
+					  </goals>
+				  </execution>
+
+				  <execution>
+					  <id>report</id>
+					  <phase>test</phase>
+
+					  <goals>
+						  <goal>report</goal>
+					  </goals>
+				  </execution>
+			  </executions>
+		  </plugin>-->
+		  <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+              <!--<source>16</source>
+              <target>16</target>-->
+              <release>21</release>
+              <compilerArgs>--enable-preview</compilerArgs>
+          </configuration>
+      </plugin>
+      </plugins>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
     </pluginManagement>
   </build>

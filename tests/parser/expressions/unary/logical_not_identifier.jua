@@ -1,0 +1,5 @@
+# Parser test.
+
+create flag = true
+
+create value = !flag

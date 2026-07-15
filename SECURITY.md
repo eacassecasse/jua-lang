@@ -66,4 +66,3 @@ Security issues will be:
 
 * fixed privately first
 * disclosed publicly after mitigation
-

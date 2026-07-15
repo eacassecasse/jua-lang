@@ -1,0 +1,5 @@
+# Parser test.
+
+create other = 42
+
+create value = (((other)))

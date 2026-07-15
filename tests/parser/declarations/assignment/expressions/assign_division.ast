@@ -1,0 +1,13 @@
+Program
+├─── VariableDeclaration
+│    ├─── mutable: true
+│    └─── name: value
+└─── AssignmentStatement
+     ├─── target: value
+     └─── BinaryExpression
+          ├─── operator: DIVIDE
+          ├─── IntegerLiteral
+          │    └─── value: 20
+          └─── IntegerLiteral
+               └─── value: 4
+

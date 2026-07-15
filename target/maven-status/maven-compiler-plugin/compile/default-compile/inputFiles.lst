@@ -11,9 +11,13 @@
 /home/administrator/jua-lang/compiler/frontend/ast/expressions/UnaryExpressionNode.java
 /home/administrator/jua-lang/compiler/frontend/ast/expressions/operators/BinaryOperator.java
 /home/administrator/jua-lang/compiler/frontend/ast/expressions/operators/UnaryOperator.java
-/home/administrator/jua-lang/compiler/frontend/ast/printer/AstPrinter.java
 /home/administrator/jua-lang/compiler/frontend/ast/statements/AssignmentStatementNode.java
 /home/administrator/jua-lang/compiler/frontend/ast/statements/StatementNode.java
+/home/administrator/jua-lang/compiler/frontend/ast/statements/blocks/BlockStatementNode.java
+/home/administrator/jua-lang/compiler/frontend/ast/statements/blocks/IfStatementNode.java
+/home/administrator/jua-lang/compiler/frontend/ast/visitor/AbstractAstVisitor.java
+/home/administrator/jua-lang/compiler/frontend/ast/visitor/AstVisitor.java
+/home/administrator/jua-lang/compiler/frontend/ast/visitor/TraversingAstVisitor.java
 /home/administrator/jua-lang/compiler/frontend/lexer/adapter/LexerAdapter.java
 /home/administrator/jua-lang/compiler/frontend/lexer/adapter/TokenMapper.java
 /home/administrator/jua-lang/compiler/frontend/lexer/adapter/utils/GenericStack.java
@@ -26,6 +30,10 @@
 /home/administrator/jua-lang/compiler/frontend/lexer/tokens/TokenType.java
 /home/administrator/jua-lang/compiler/frontend/parser/generated/JuaParser.java
 /home/administrator/jua-lang/compiler/frontend/parser/generated/sym.java
+/home/administrator/jua-lang/compiler/frontend/printer/AstPrinter.java
+/home/administrator/jua-lang/compiler/frontend/printer/rendering/TreeRenderer.java
+/home/administrator/jua-lang/compiler/frontend/printer/rendering/TreeTheme.java
+/home/administrator/jua-lang/compiler/frontend/printer/rendering/UnicodeTreeTheme.java
 /home/administrator/jua-lang/compiler/frontend/source/SourcePosition.java
 /home/administrator/jua-lang/compiler/frontend/source/SourceSpan.java
 /home/administrator/jua-lang/compiler/reference/LexerRun.java

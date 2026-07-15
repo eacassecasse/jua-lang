@@ -1,0 +1,13 @@
+Program
+├─── VariableDeclaration
+│    ├─── mutable: true
+│    └─── name: value
+└─── AssignmentStatement
+     ├─── target: value
+     └─── BinaryExpression
+          ├─── operator: AND
+          ├─── BooleanLiteral
+          │    └─── value: true
+          └─── BooleanLiteral
+               └─── value: false
+

@@ -1,0 +1,5 @@
+# Regression test.
+
+create a = 1
+create mutable b = 2
+create c = 3

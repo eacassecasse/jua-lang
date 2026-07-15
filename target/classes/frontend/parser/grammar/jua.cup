@@ -1,0 +1,729 @@
+package compiler.frontend.parser.generated;
+
+import java_cup.runtime.ComplexSymbolFactory;
+import java_cup.runtime.ComplexSymbolFactory.ComplexSymbol;
+import java_cup.runtime.*;
+import java.util.List;
+import java.util.ArrayList;
+
+import compiler.frontend.ast.ProgramNode;
+import compiler.frontend.ast.TopLevelNode;
+import compiler.frontend.ast.declarations.VariableDeclarationNode;
+import compiler.frontend.ast.expressions.ExpressionNode;
+import compiler.frontend.ast.expressions.LiteralExpressionNode;
+import compiler.frontend.ast.expressions.IdentifierExpressionNode;
+import compiler.frontend.ast.expressions.BinaryExpressionNode;
+import compiler.frontend.ast.expressions.GroupingExpressionNode;
+import compiler.frontend.ast.expressions.UnaryExpressionNode;
+import compiler.frontend.ast.expressions.operators.UnaryOperator;
+import compiler.frontend.ast.expressions.operators.BinaryOperator;
+import compiler.frontend.ast.statements.AssignmentStatementNode;
+
+
+/* ==========================================================
+   Parser Configuration
+   ========================================================== */
+
+parser code {:
+
+public JuaParser(Scanner s, ComplexSymbolFactory sf) {
+	super(s, sf);
+}
+
+public void syntax_error(Symbol cur_token) {
+	if (cur_token instanceof ComplexSymbol) {
+	    ComplexSymbol cs = (ComplexSymbol) cur_token;
+	    System.err.printf("Syntax error at %s (Line %d, Column %d)%n",
+		cs.getName(), cs.getLeft().getLine(), cs.getLeft().getColumn());
+	} else {
+	    super.syntax_error(cur_token);
+	}
+}
+
+private compiler.frontend.source.SourceSpan span(
+	java_cup.runtime.ComplexSymbolFactory.Location left,
+	java_cup.runtime.ComplexSymbolFactory.Location right
+) {
+    return new compiler.frontend.source.SourceSpan(
+        new compiler.frontend.source.SourcePosition(
+            left.getLine(),
+            left.getColumn()
+        ),
+        new compiler.frontend.source.SourcePosition(
+            right.getLine(),
+            right.getColumn()
+        )
+    );
+}
+:};
+
+/* ==========================================================
+   Terminals
+   ========================================================== */
+
+/* Special */
+
+/* terminal EOF;*/
+
+/* Layout */
+
+terminal NEWLINE;
+
+/* ==========================================================
+   Identifiers
+   ========================================================== */
+
+terminal IDENTIFIER;
+
+/* ==========================================================
+   Literals
+   ========================================================== */
+
+terminal Integer INTEGER_LITERAL;
+terminal Double FLOAT_LITERAL;
+terminal Double DOUBLE_LITERAL;
+terminal String STRING_LITERAL;
+
+/* ==========================================================
+   Keywords
+   ========================================================== */
+
+terminal CREATE;
+terminal MUTABLE;
+terminal CONSTANT;
+
+terminal FUNCTION;
+terminal RETURN;
+
+terminal IF;
+terminal ELSE;
+
+terminal WHILE;
+terminal FOR;
+terminal REPEAT;
+terminal IN;
+
+terminal BREAK;
+terminal CONTINUE;
+
+terminal OBJECT;
+terminal TRAIT;
+terminal INTERFACE;
+
+terminal USES;
+
+terminal IMPORT;
+terminal EXPORT;
+
+terminal TRUE;
+terminal FALSE;
+terminal NULL;
+
+terminal END;
+
+terminal AND;
+terminal OR;
+terminal NOT;
+
+/* ==========================================================
+   Operators
+   ========================================================== */
+
+terminal PLUS;
+terminal MINUS;
+terminal STAR;
+terminal SLASH;
+terminal PERCENT;
+
+terminal ASSIGN;
+
+terminal EQUAL_EQUAL;
+terminal BANG_EQUAL;
+
+terminal STAR_EQUAL;
+terminal OVER_EQUAL;
+
+terminal LESS;
+terminal LESS_EQUAL;
+
+terminal GREATER;
+terminal GREATER_EQUAL;
+
+/* ==========================================================
+   Delimiters
+   ========================================================== */
+
+terminal LEFT_PAREN;
+terminal RIGHT_PAREN;
+
+terminal LEFT_BRACKET;
+terminal RIGHT_BRACKET;
+
+terminal COMMA;
+terminal COLON;
+terminal DOT;
+
+/* ==========================================================
+   Non-Terminals
+   ========================================================== */
+
+non terminal ProgramNode program;
+
+non terminal List<TopLevelNode> member_list;
+
+non terminal TopLevelNode member;
+
+non terminal VariableDeclarationNode variable_declaration;
+
+non terminal ExpressionNode expression;
+
+non terminal ExpressionNode logical_or;
+non terminal ExpressionNode logical_and;
+
+non terminal ExpressionNode equality;
+non terminal ExpressionNode comparison;
+
+non terminal ExpressionNode term;
+non terminal ExpressionNode factor;
+
+non terminal ExpressionNode unary;
+non terminal ExpressionNode primary;
+
+non terminal AssignmentStatementNode assignment_statement;
+
+/* ==========================================================
+   Precedence
+   ========================================================== */
+
+precedence left OR;
+precedence left AND;
+
+precedence left EQUAL_EQUAL, BANG_EQUAL;
+
+precedence left LESS,
+                LESS_EQUAL,
+                GREATER,
+                GREATER_EQUAL;
+
+precedence left PLUS, MINUS;
+
+precedence left STAR,
+                SLASH,
+                PERCENT;
+
+precedence right NOT;
+/* precedence right MINUS; */
+
+/* ==========================================================
+   Start Symbol
+   ========================================================== */
+
+start with program;
+
+/* ==========================================================
+   Grammar
+   ========================================================== */
+
+program ::=
+        member_list:list
+        {:
+            RESULT =
+                new ProgramNode(
+                    list,
+                    null
+                );
+        :}
+
+    |
+
+	{:
+	    RESULT =
+		new ProgramNode(
+		    new ArrayList<>(),
+		    null
+		);
+	:}
+;
+
+
+/* ==========================================================
+   Declarations
+   ========================================================== */
+
+member_list ::=
+        member:m
+        {:
+            List<TopLevelNode> list =
+                new ArrayList<>();
+
+            list.add(m);
+
+            RESULT = list;
+        :}
+
+    |
+
+        member_list:list
+        member:m
+        {:
+            list.add(m);
+
+            RESULT = list;
+        :}
+;
+
+member ::=
+        variable_declaration:d
+        {:
+            RESULT = d;
+        :}
+
+    |
+
+	assignment_statement:s
+	{:
+	    RESULT = s;
+	:}
+;
+
+
+/* ==========================================================
+   Variables
+   ========================================================== */
+
+variable_declaration ::=
+	CREATE:c
+	IDENTIFIER:name
+	NEWLINE:n
+	{:
+	    RESULT =
+		new VariableDeclarationNode(
+		    true,
+		    (String) name,
+		    null,
+		    span(cxleft, nxright)
+		);
+	:}
+
+    |
+
+	CREATE:c
+	IDENTIFIER:name
+	ASSIGN
+	expression:value
+	NEWLINE:n
+	{:
+	    RESULT =
+		new VariableDeclarationNode(
+		    true,
+		    (String) name,
+		    value,
+		    span(cxleft, nxright)
+		);
+	:}
+
+    |
+
+        CREATE:c
+        MUTABLE:m
+        IDENTIFIER:name
+        ASSIGN
+        expression:value
+        NEWLINE:n
+        {:
+            RESULT =
+                new VariableDeclarationNode(
+                    false,
+                    (String) name,
+                    value,
+                    span(cxleft, nxright)
+                );
+        :}
+
+    |
+
+        CREATE:c
+        CONSTANT:cons
+        IDENTIFIER:name
+        ASSIGN
+        expression:value
+        NEWLINE:n
+        {:
+            RESULT =
+                new VariableDeclarationNode(
+                    false,
+                    (String) name,
+                    value,
+                    span(cxleft, nxright)
+                );
+        :}
+;
+
+assignment_statement ::=
+	IDENTIFIER:name
+	ASSIGN
+	expression:value
+	NEWLINE:n
+	{:
+	    RESULT =
+		new AssignmentStatementNode(
+		    (String) name,
+		    value,
+		    span(namexleft, nxright)
+		);
+	:}
+;
+
+/* ==========================================================
+   Expressions
+   ========================================================== */
+primary ::=
+        INTEGER_LITERAL:value
+        {:
+            RESULT =
+                new LiteralExpressionNode(
+                    value,
+                    span(valuexleft, valuexright)
+                );
+        :}
+
+    |
+
+        STRING_LITERAL:value
+        {:
+            RESULT =
+                new LiteralExpressionNode(
+                    value,
+                    span(valuexleft, valuexright)
+                );
+        :}
+
+    |
+
+	FLOAT_LITERAL:value
+	{:
+	    RESULT =
+		new LiteralExpressionNode(
+		    value,
+		    span(valuexleft, valuexright)
+		);
+	:}
+
+    |
+
+	DOUBLE_LITERAL:value
+	{:
+	    RESULT =
+		new LiteralExpressionNode(
+		   value,
+		   span(valuexleft, valuexright)
+		);
+	:}
+
+    |
+
+        TRUE:t
+        {:
+            RESULT =
+                new LiteralExpressionNode(
+                    true,
+                    span(txleft, txright)
+                );
+        :}
+
+    |
+
+        FALSE:f
+        {:
+            RESULT =
+                new LiteralExpressionNode(
+                    false,
+                    span(fxleft, fxright)
+                );
+        :}
+
+    |
+
+        NULL:nil
+        {:
+            RESULT =
+                new LiteralExpressionNode(
+                    null,
+                    span(nilxleft, nilxright)
+                );
+        :}
+
+    |
+
+        IDENTIFIER:name
+        {:
+            RESULT =
+                new IdentifierExpressionNode(
+                    (String) name,
+                    span(namexleft, namexright)
+                );
+        :}
+
+    |
+
+        LEFT_PAREN:l expression:e RIGHT_PAREN:r
+        {:
+            RESULT =
+                new GroupingExpressionNode(
+                    e,
+                    span(lxleft, rxright)
+                );
+        :}
+;
+
+
+unary ::=
+        primary:p
+        {:
+            RESULT = p;
+        :}
+
+    |
+
+        MINUS:m unary:e
+        {:
+            RESULT =
+                new UnaryExpressionNode(
+                    UnaryOperator.NEGATE,
+                    e,
+                    span(mxleft, exright)
+                );
+        :}
+
+    |
+
+        NOT:n unary:e
+        {:
+            RESULT =
+                new UnaryExpressionNode(
+                    UnaryOperator.NOT,
+                    e,
+                    span(nxleft, exright)
+                );
+        :}
+;
+
+factor ::=
+        factor:l STAR unary:r
+        {:
+            RESULT =
+                new BinaryExpressionNode(
+                    l,
+                    BinaryOperator.MULTIPLY,
+                    r,
+                    span(lxleft, rxright)
+                );
+        :}
+
+    |
+
+        factor:l SLASH unary:r
+        {:
+            RESULT =
+                new BinaryExpressionNode(
+                    l,
+                    BinaryOperator.DIVIDE,
+                    r,
+                    span(lxleft, rxright)
+                );
+        :}
+
+    |
+
+        factor:l PERCENT unary:r
+        {:
+            RESULT =
+                new BinaryExpressionNode(
+                    l,
+                    BinaryOperator.MODULO,
+                    r,
+                    span(lxleft, rxright)
+                );
+        :}
+
+    |
+
+        unary:u
+        {:
+            RESULT = u;
+        :}
+;
+
+term ::=
+        term:l PLUS factor:r
+        {:
+            RESULT =
+                new BinaryExpressionNode(
+                    l,
+                    BinaryOperator.ADD,
+                    r,
+                    span(lxleft, rxright)
+                );
+        :}
+
+    |
+
+        term:l MINUS factor:r
+        {:
+            RESULT =
+                new BinaryExpressionNode(
+                    l,
+                    BinaryOperator.SUBTRACT,
+                    r,
+                    span(lxleft, rxright)
+                );
+        :}
+
+    |
+
+        factor:f
+        {:
+            RESULT = f;
+        :}
+;
+
+comparison ::=
+        term:l LESS term:r
+        {:
+            RESULT =
+                new BinaryExpressionNode(
+                    l,
+                    BinaryOperator.LESS,
+                    r,
+                    span(lxleft, rxright)
+                );
+        :}
+
+    |
+
+        term:l LESS_EQUAL term:r
+        {:
+            RESULT =
+                new BinaryExpressionNode(
+                    l,
+                    BinaryOperator.LESS_EQUAL,
+                    r,
+                    span(lxleft, rxright)
+                );
+        :}
+
+    |
+
+        term:l GREATER term:r
+        {:
+            RESULT =
+                new BinaryExpressionNode(
+                    l,
+                    BinaryOperator.GREATER,
+                    r,
+                    span(lxleft, rxright)
+                );
+        :}
+
+    |
+
+        term:l GREATER_EQUAL term:r
+        {:
+            RESULT =
+                new BinaryExpressionNode(
+                    l,
+                    BinaryOperator.GREATER_EQUAL,
+                    r,
+                    span(lxleft, rxright)
+                );
+        :}
+
+    |
+
+        term:t
+        {:
+            RESULT = t;
+        :}
+;
+
+
+equality ::=
+        equality:l EQUAL_EQUAL comparison:r
+        {:
+            RESULT =
+                new BinaryExpressionNode(
+                    l,
+                    BinaryOperator.EQUAL,
+                    r,
+                    span(lxleft, rxright)
+                );
+        :}
+
+    |
+
+        equality:l BANG_EQUAL comparison:r
+        {:
+            RESULT =
+                new BinaryExpressionNode(
+                    l,
+                    BinaryOperator.NOT_EQUAL,
+                    r,
+                    span(lxleft, rxright)
+                );
+        :}
+
+    |
+
+        comparison:c
+        {:
+            RESULT = c;
+        :}
+;
+
+logical_and ::=
+        logical_and:l AND equality:r
+        {:
+            RESULT =
+                new BinaryExpressionNode(
+                    l,
+                    BinaryOperator.AND,
+                    r,
+                    span(lxleft, rxright)
+                );
+        :}
+
+    |
+
+        equality:e
+        {:
+            RESULT = e;
+        :}
+;
+
+logical_or ::=
+        logical_or:l OR logical_and:r
+        {:
+            RESULT =
+                new BinaryExpressionNode(
+                    l,
+                    BinaryOperator.OR,
+                    r,
+                    span(lxleft, rxright)
+                );
+        :}
+
+    |
+
+        logical_and:e
+        {:
+            RESULT = e;
+        :}
+;
+
+expression ::=
+        logical_or:e
+        {:
+            RESULT = e;
+        :}
+;
+

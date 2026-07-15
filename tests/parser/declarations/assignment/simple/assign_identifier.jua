@@ -1,0 +1,6 @@
+# Assignment from another variable.
+
+create other = 10
+create mutable value
+
+value = other

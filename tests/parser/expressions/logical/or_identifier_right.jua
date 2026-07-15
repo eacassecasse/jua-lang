@@ -1,0 +1,5 @@
+# Parser test.
+
+create right = false
+
+create value = true or right

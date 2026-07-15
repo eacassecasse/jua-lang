@@ -1,3 +1,4 @@
+compiler/frontend/printer/rendering/UnicodeTreeTheme.class
 compiler/frontend/ast/expressions/ExpressionNode.class
 compiler/frontend/ast/statements/AssignmentStatementNode.class
 compiler/frontend/ast/expressions/GroupingExpressionNode.class
@@ -9,15 +10,21 @@ compiler/frontend/ast/declarations/DeclarationNode.class
 compiler/frontend/ast/declarations/VariableDeclarationNode.class
 compiler/frontend/parser/generated/JuaParser.class
 compiler/frontend/parser/generated/sym.class
+compiler/frontend/printer/rendering/TreeTheme.class
 compiler/frontend/ast/ProgramNode.class
 compiler/frontend/ast/AstNode.class
 compiler/reference/LexerRunner.class
 compiler/frontend/lexer/adapter/TokenMapper$1.class
 compiler/frontend/source/SourcePosition.class
 compiler/frontend/lexer/tokens/Token.class
+compiler/frontend/printer/rendering/TreeRenderer.class
+compiler/frontend/ast/statements/blocks/IfStatementNode.class
 compiler/reference/ParserRunner.class
+compiler/frontend/ast/statements/blocks/BlockStatementNode.class
 compiler/reference/LexerRun.class
 compiler/frontend/ast/expressions/BinaryExpressionNode.class
+compiler/frontend/ast/visitor/TraversingAstVisitor.class
+compiler/frontend/ast/visitor/AbstractAstVisitor.class
 compiler/frontend/lexer/adapter/utils/Stack.class
 compiler/frontend/lexer/adapter/LexerAdapter.class
 compiler/frontend/lexer/tokens/TokenType.class
@@ -25,6 +32,7 @@ compiler/frontend/ast/expressions/operators/BinaryOperator.class
 compiler/frontend/ast/statements/StatementNode.class
 compiler/frontend/source/SourceSpan.class
 compiler/frontend/ast/TopLevelNode.class
+compiler/frontend/ast/visitor/AstVisitor.class
 compiler/frontend/parser/generated/JuaParser$CUP$JuaParser$actions.class
 compiler/frontend/lexer/generated/JuaLexer.class
 compiler/frontend/ast/expressions/LiteralExpressionNode.class

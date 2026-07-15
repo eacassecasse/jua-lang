@@ -1,0 +1,13 @@
+Program
+├─── VariableDeclaration
+│    ├─── mutable: true
+│    └─── name: value
+└─── AssignmentStatement
+     ├─── target: value
+     └─── BinaryExpression
+          ├─── operator: NOT_EQUAL
+          ├─── IntegerLiteral
+          │    └─── value: 1
+          └─── IntegerLiteral
+               └─── value: 2
+

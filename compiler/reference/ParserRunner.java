@@ -1,6 +1,8 @@
 package compiler.reference;
 
 import java.io.FileReader;
+import java.util.Arrays;
+import java.util.List;
 
 import compiler.frontend.parser.generated.JuaParser;
 import compiler.frontend.lexer.generated.JuaLexer;
@@ -38,6 +40,8 @@ public final class ParserRunner {
                         lexer,
                         symbolFactory
                 );
+
+        parser.debug_stack();
 
         ProgramNode program =
                 (ProgramNode) parser.parse().value;

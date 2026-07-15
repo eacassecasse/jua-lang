@@ -1,0 +1,3 @@
+# Regression test.
+
+Reserved for future semantic validation of immutable declarations.

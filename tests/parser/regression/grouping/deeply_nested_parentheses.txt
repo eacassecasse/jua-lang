@@ -1,0 +1,3 @@
+# Regression test.
+
+Parser must correctly handle deeply nested parentheses.

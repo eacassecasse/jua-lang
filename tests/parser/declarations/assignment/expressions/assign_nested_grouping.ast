@@ -1,0 +1,12 @@
+Program
+├─── VariableDeclaration
+│    ├─── mutable: true
+│    └─── name: value
+└─── AssignmentStatement
+     ├─── target: value
+     └─── GroupingExpression
+          └─── GroupingExpression
+               └─── GroupingExpression
+                    └─── IntegerLiteral
+                         └─── value: 42
+

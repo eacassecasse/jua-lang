@@ -1,0 +1,5 @@
+# Parser test.
+
+create value = 42
+
+create value = -value

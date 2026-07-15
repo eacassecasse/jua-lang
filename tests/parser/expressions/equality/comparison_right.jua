@@ -1,0 +1,3 @@
+# Parser test.
+
+create value = true == 1 < 2

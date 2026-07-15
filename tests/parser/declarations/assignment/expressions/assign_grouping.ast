@@ -1,0 +1,14 @@
+Program
+├─── VariableDeclaration
+│    ├─── mutable: true
+│    └─── name: value
+└─── AssignmentStatement
+     ├─── target: value
+     └─── GroupingExpression
+          └─── BinaryExpression
+               ├─── operator: ADD
+               ├─── IntegerLiteral
+               │    └─── value: 1
+               └─── IntegerLiteral
+                    └─── value: 2
+

@@ -1,0 +1,3 @@
+# Parser test.
+
+create value = (20 + 1) % 4

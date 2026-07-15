@@ -185,4 +185,3 @@ No PR may be merged without:
 * Specification over implementation assumptions
 
 ---
-

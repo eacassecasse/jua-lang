@@ -1,0 +1,4 @@
+# Variable declaration initialized from another variable.
+
+create other = 10
+create  value = true

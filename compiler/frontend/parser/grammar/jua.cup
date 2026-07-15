@@ -191,6 +191,8 @@ non terminal ExpressionNode primary;
 
 non terminal AssignmentStatementNode assignment_statement;
 
+non terminal void optional_newlines;
+
 /* ==========================================================
    Precedence
    ========================================================== */
@@ -230,7 +232,7 @@ program ::=
             RESULT =
                 new ProgramNode(
                     list,
-                    null
+                    span(listxleft, listxright)
                 );
         :}
 
@@ -238,10 +240,10 @@ program ::=
 
 	{:
 	    RESULT =
-		new ProgramNode(
-		    new ArrayList<>(),
-		    null
-		);
+	        new ProgramNode(
+	            new ArrayList<>(),
+	            null
+	        );
 	:}
 ;
 
@@ -256,20 +258,39 @@ member_list ::=
             List<TopLevelNode> list =
                 new ArrayList<>();
 
-            list.add(m);
+            if (m != null) {
+		list.add(m);
+	    }
 
             RESULT = list;
         :}
 
     |
 
+	NEWLINE
+	{:
+	    RESULT = new ArrayList<>();
+	:}
+
+    |
+
         member_list:list
+	NEWLINE
         member:m
         {:
-            list.add(m);
+            if (m != null) {
+		list.add(m);
+	    }
 
             RESULT = list;
         :}
+
+    |
+
+	member_list:list NEWLINE
+	{:
+	    RESULT = list;
+	:}
 ;
 
 member ::=
@@ -287,6 +308,7 @@ member ::=
 ;
 
 
+
 /* ==========================================================
    Variables
    ========================================================== */
@@ -298,7 +320,7 @@ variable_declaration ::=
 	{:
 	    RESULT =
 		new VariableDeclarationNode(
-		    true,
+		    false,
 		    (String) name,
 		    null,
 		    span(cxleft, nxright)
@@ -315,9 +337,25 @@ variable_declaration ::=
 	{:
 	    RESULT =
 		new VariableDeclarationNode(
-		    true,
+		    false,
 		    (String) name,
 		    value,
+		    span(cxleft, nxright)
+		);
+	:}
+
+    |
+
+	CREATE:c
+	MUTABLE:m
+	IDENTIFIER:name
+	NEWLINE:n
+	{:
+	    RESULT =
+		new VariableDeclarationNode(
+		    true,
+		    (String) name,
+		    null,
 		    span(cxleft, nxright)
 		);
 	:}
@@ -333,7 +371,7 @@ variable_declaration ::=
         {:
             RESULT =
                 new VariableDeclarationNode(
-                    false,
+                    true,
                     (String) name,
                     value,
                     span(cxleft, nxright)

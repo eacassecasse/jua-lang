@@ -1,0 +1,3 @@
+# Parser test.
+
+create value = 100 / 2 / 5 / 2

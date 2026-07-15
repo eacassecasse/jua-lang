@@ -1,0 +1,3 @@
+# Variable declaration.
+
+create mutable value = "Hello World"

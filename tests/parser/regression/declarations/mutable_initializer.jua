@@ -1,0 +1,3 @@
+# Regression test.
+
+create mutable value = 42

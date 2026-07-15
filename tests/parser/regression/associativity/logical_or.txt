@@ -1,0 +1,3 @@
+# Regression test.
+
+Ensures logical OR remains left associative.

@@ -1,0 +1,3 @@
+# Regression test.
+
+Equality must bind before logical AND.

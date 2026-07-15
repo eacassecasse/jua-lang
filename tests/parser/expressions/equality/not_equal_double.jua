@@ -1,0 +1,3 @@
+# Parser test.
+
+create value = 3.14 != 2.71

@@ -1,0 +1,3 @@
+# Regression test.
+
+Multiple declarations separated by NEWLINE.

@@ -1,0 +1,3 @@
+# Variable declaration.
+
+create  value = "Hello World"
